@@ -1,55 +1,69 @@
-class Voiture:
-    def __init__(self, marque, modele, annee, kilometrage):
-        # Attributs privés
+class Voiture :
+    def __init__(self, marque, modèle, année, kilométrage, en_marche = False, reservoir = 50):
         self.__marque = marque
-        self.__modele = modele
-        self.__annee = annee
-        self.__kilometrage = kilometrage
-        self.__en_marche = False  # La voiture est par défaut éteinte
-        self.__reservoir = 50  # Le réservoir de carburant est initialisé à 50 litres par défaut
+        self.__modèle = modèle
+        self.__année = année
+        self.__kilométrage = kilométrage
+        self.__en_marche = en_marche
+        self.__reservoir = reservoir
 
     # Assesseurs (getters) pour obtenir les valeurs des attributs
-    def get_marque(self):
+    def get_marque(self):         
         return self.__marque
-
-    def get_modele(self):
-        return self.__modele
-
-    def get_annee(self):
-        return self.__annee
-
-    def get_kilometrage(self):
-        return self.__kilometrage
-
-    def get_en_marche(self):
+    def get_modele(self) :
+        return self.__modèle
+    def get_année(self) :
+        return self.__année
+    def get_kilomètrage(self) :
+        return self.__kilométrage
+    def get_status(self) :
         return self.__en_marche
 
     # Mutateurs (setters) pour modifier les valeurs des attributs
-    def set_marque(self, marque):
-        self.__marque = marque
+    def set_marque(self, new_marque):         
+        self.__marque = new_marque
+        return self.__marque
+    def set_modele(self, new_modele) :
+        self.__modèle = new_modele
+        return self.__modèle
+    def set_année(self, new_année) :
+        self.__année = new_année
+        return self.__année
+    def set_kilomètrage(self, new_kilo) :
+        self.__kilométrage =new_kilo
+        return self.__kilométrage
+    def set_status(self, new_status) :
+        if self.__en_marche :
+            new_status = True
+        else :
+            new_status = self.__en_marche
+        return new_status
 
-    def set_modele(self, modele):
-        self.__modele = modele
-
-    def set_annee(self, annee):
-        self.__annee = annee
-
-    def set_kilometrage(self, kilometrage):
-        self.__kilometrage = kilometrage
-
-    # Méthode privée pour vérifier le niveau de carburant
-    def __verifier_plein(self):
-        return self.__reservoir
+  
+   
 
     # Méthode pour démarrer la voiture
-    def demarrer(self):
-        if self.__verifier_plein() > 5:
+    def démarrer(self) :
+        if self.__verifier_plein() > 5 :
             self.__en_marche = True
-            print("La voiture est démarrée.")
-        else:
-            print("Pas assez de carburant pour démarrer la voiture.")
+        return self.__en_marche
 
-    # Méthode pour arrêter la voiture
-    def arreter(self):
-        self.__en_marche = False
-        print("La voiture est arrêtée.")
+    def arrêter(self) :
+        self.__en_marche = False    
+        return self.__en_marche
+    
+    def __verifier_plein(self) :
+        return self.__reservoir
+    
+    def set_reservoir(self, new_value) :
+        self.__reservoir = new_value
+        return self.__reservoir
+    #add a method that prints the car's information
+
+    def afficher(self) :
+        return f"Les info de la voiture :\nmarque = {self.get_marque()}\nmodel = {self.get_modele()}\nKM = {self.get_kilomètrage()} km\nstatus = {self.get_status()}"
+    
+voiture1 = Voiture("Opel", "AAA", 2021, 40)
+voiture1.set_reservoir(40)
+print(voiture1.démarrer())
+print(voiture1.afficher())
