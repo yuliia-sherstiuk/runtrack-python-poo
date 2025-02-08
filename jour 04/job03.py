@@ -1,13 +1,13 @@
 class Rectangle:
-    def __init__ (self, langeuer, largeur):
-        self.__langeuer = langeuer
-        self.__largeur = largeur
+    def __init__(self, longueur, largeur):
+        self.__longueur = longueur  
+        self.__largeur = largeur 
 
     #Assesseurs (get)
-    def get_langeuer(self):
-        return self.__langeuer
+    def get_longueur(self):  
+        return self.__longueur
     
-    def get_largeur (self):
+    def get_largeur(self):   
         return self.__largeur
     
     #Mutateurs(set)
@@ -15,27 +15,51 @@ class Rectangle:
     def set_longueur(self, longueur):
         if longueur > 0:
             self.__longueur = longueur
-
-    def set_largeur(self, largeur): 
+        else:
+            raise ValueError("La longueur doit être un nombre positif")
+    
+    def set_largeur(self, largeur):
         if largeur > 0:
-            self.__largeur = largeur 
+            self.__largeur = largeur
+        else:
+            raise ValueError("La largeur doit être un nombre positif")
     
-
-
-    def perimetre (self)
-        return  2 * (self.__largeur + self.__langeuer)
-
-
-    def surface (self) 
-        return self.__langeuer * self.__largeur
-
     
+    def perimetre(self):
+        return 2 * (self.__longueur + self.__largeur)
+
+
+    def surface (self): 
+         return self.__longueur * self.__largeur
+
+class Parallelepipede(Rectangle):
+    def __init__(self, longeuer, largeur, hauteur):
+        super().__init__(longeuer, largeur)
+        self.__hauteur = hauteur
+
+    def get_hauteur(self):
+        return self.__hauteur
+    
+    def set_hauteur(self, hauteur):
+        if hauteur > 0:
+            self.__hauteur = hauteur
+        else:
+            raise ValueError("La valleur doit etre un nombre positif")
+        
+    def volume(self):
+        return self.get_longueur() * self.get_largeur() * self.get_hauteur()
+   #test
+
+rectangle = Rectangle(5, 7) 
+print("perimetr du rectangle:", rectangle.perimetre())
+print("surface du rectangle:", rectangle.surface())   
+
+parallelepipede = Parallelepipede(2, 3, 4)
+print("Volume du parallélépipède:", parallelepipede.volume())
+        
+               
+
+
+
        
-     class RacingShip(Ship):
-    def __init__(self, name, max_speed):
-        super().__init__(name)
-        self.max_speed = max_speed
-
-    def display_speed(self):
-        print(f"Vitesse maximale du {self.name}: {self.max_speed} nœuds.")
-  
+    
